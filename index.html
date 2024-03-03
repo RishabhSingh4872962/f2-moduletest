@@ -14,9 +14,7 @@
         left: 23px;
         border-radius: 5px;
         border: 1px;
-
     }
-
     #btn {
         width: 128px;
         height: 27px;
@@ -26,7 +24,6 @@
         position: relative;
         margin-top: 7px;
     }
-
     input {
         width: 360px;
         height: 28px;
@@ -36,7 +33,6 @@
         border: 2px solid black;
         margin-top: 5px;
     }
-
     label {
         font-family: Inter;
         font-size: 20px;
@@ -46,7 +42,6 @@
         text-align: left;
 
     }
-
     p {
         font-family: Inter;
         font-size: 15px;
@@ -56,11 +51,9 @@
         text-align: left;
         color: #FF0000;
     }
-
     .credensials {
         padding: 10px;
     }
-
     span {
         font-family: Inter;
         font-size: 15px;
@@ -116,15 +109,15 @@
                 } else {
                     email = false;
                 }
-            } 
-            if (this.event.target.name=="password") {
+            }
+            if (this.event.target.name == "password") {
                 if (checkPassword(this.event.target.value)) {
                     password = true;
                 } else {
                     password = false;
-                }  
-            } 
-       
+                }
+            }
+
             if (!email) {
                 emailError.hidden = false;
                 allGood.hidden = true;
@@ -159,13 +152,13 @@
             emailVal.value = "";
             passwordVal.value = "";
             allGood.hidden = true;
-            password=false;
-            email=false;
+            password = false;
+            email = false;
         }
         if (!email && !password) {
             btn.disabled = true
         }
-      
+
     </script>
 </body>
 
