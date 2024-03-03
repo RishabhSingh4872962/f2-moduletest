@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .contianer {
+        width: 360px;
+        height: 202px;
+        top: 19px;
+        left: 23px;
+        border-radius: 5px;
+        border: 1px;
+
+    }
+
+    #btn {
+        width: 128px;
+        height: 27px;
+        left: 15px;
+        border-radius: 5px;
+        border: 1px solid black;
+        position: relative;
+        margin-top: 7px;
+    }
+
+    input {
+        width: 360px;
+        height: 28px;
+        top: 130px;
+        left: 23px;
+        border-radius: 5px;
+        border: 2px solid black;
+        margin-top: 5px;
+    }
+
+    label {
+        font-family: Inter;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 15px;
+        letter-spacing: 0em;
+        text-align: left;
+
+    }
+
+    p {
+        font-family: Inter;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 15px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #FF0000;
+    }
+
+    .credensials {
+        padding: 10px;
+    }
+
+    span {
+        font-family: Inter;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 15px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: green;
+        margin-left: 10px;
+    }
+</style>
+
+<body>
+    <form class="container" onsubmit="handleSubmit()">
+        <div class="credensials">
+            <label for="email">Email</label><br>
+            <input oninput="handleChange()" id="email" type="email" name="email" placeholder="Enter the email" />
+            <p id="emailError" hidden>Make sure email is more than 3 characters and has @ and a.</p>
+        </div>
+        <div class="credensials">
+            <label for="password">Password</label><br>
+            <input oninput="handleChange()" id="password" type="password" name="password"
+                placeholder="Enter the password" />
+            <p id="passwordError" hidden>Make sure password is more than 8 characters.</p>
+        </div>
+        <span id="allGood" hidden>All good to go!</span><br>
+        <button id="btn" type="submit">Submit</button>
+    </form>
+    <script>
+        const emailVal = document.getElementById("email");
+        const passwordVal = document.getElementById("password");
+        const allGood = document.getElementById("allGood");
+
+        const emailError = document.getElementById("emailError");
+        const passwordError = document.getElementById("passwordError");
+
+        const btn = document.getElementById("btn")
+        let email = false;
+        let password = false;
+
+
+        function checkEmail(email) {
+            return email.includes("@") && email.includes(".") && email.length > 3;
+        }
+        function checkPassword(password) {
+            return password.length >= 8 ? true : false;
+        }
+
+        function handleChange() {
+            if (this.event.target.name == "email") {
+                if (checkEmail(this.event.target.value)) {
+                    email = true;
+                } else {
+                    email = false;
+                }
+            } 
+            if (this.event.target.name=="password") {
+                if (checkPassword(this.event.target.value)) {
+                    password = true;
+                } else {
+                    password = false;
+                }  
+            } 
+       
+            if (!email) {
+                emailError.hidden = false;
+                allGood.hidden = true;
+            } else {
+                emailError.hidden = true;
+            }
+            if (!password) {
+                passwordError.hidden = false;
+                allGood.hidden = true;
+            } else {
+                passwordError.hidden = true;
+            }
+
+            if (email && password) {
+                emailError.hidden = true;
+                passwordError.hidden = true;
+                allGood.hidden = false;
+                btn.disabled = false
+            } else {
+                btn.disabled = true
+            }
+            console.log(email, password)
+        }
+
+
+        function handleSubmit() {
+            this.event.preventDefault();
+            let confirmData = confirm("Do you want to sumit the form?")
+            if (confirmData) {
+                alert("successful signup!");
+            }
+            emailVal.value = "";
+            passwordVal.value = "";
+            allGood.hidden = true;
+            password=false;
+            email=false;
+        }
+        if (!email && !password) {
+            btn.disabled = true
+        }
+      
+    </script>
+</body>
+
+</html>
